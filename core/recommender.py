@@ -1,5 +1,14 @@
 from sentence_transformers import SentenceTransformer, util
 import json
+from sklearn.feature_extraction.text import TfidfVectorizer
+
+class DummyRecommender:
+    def __init__(self):
+        self.vectorizer = TfidfVectorizer()
+    
+    def encode(self, sentences):
+        return self.vectorizer.fit_transform(sentences).toarray()
+
 
 class SHLRecommender:
     def __init__(self, product_data_path: str):
